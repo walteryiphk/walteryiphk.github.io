@@ -114,6 +114,30 @@ async function fetchGovPrice() {
     statusEl.className = 'status error';
     statusEl.textContent = '自動讀取失敗（可能因為 CORS 限制或離線）。請手動輸入牌價。錯誤：' + err.message;
   }
+  forceRefreshPWA();
+}
+
+async function forceRefreshPWA() {
+  try {
+    // 1. Clear all Cache Storage entries
+    if ('caches' in window) {
+      const cacheNames = await caches.keys();
+      await Promise.all(cacheNames.map(name => caches.delete(name)));
+    }
+
+    // 2. Unregister all Service Workers
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(registrations.map(registration => registration.unregister()));
+    }
+
+    // 3. Force reload from the server (bypassing browser cache)
+    window.location.reload(true);
+  } catch (error) {
+    console.error('Failed to clear PWA cache:', error);
+    // Fallback standard reload
+    window.location.reload();
+  }
 }
 
 document.getElementById('fetchBtn').addEventListener('click', fetchGovPrice);
@@ -122,7 +146,5 @@ document.getElementById('fetchBtn').addEventListener('click', fetchGovPrice);
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
-    // init price
-    fetchGovPrice();
   });
 }
