@@ -68,7 +68,7 @@ ids.forEach(id => els[id].addEventListener('input', recalc));
 recalc();
 
 // ---- Auto-fetch government pump price (Consumer Council open data) & from https://hkg-deadline.github.io Kudos! ----
-const GOV_API = 'https://hkg-deadline.github.io/hk-petrol-price-crawler/json/petrolprice.json';
+const GOV_API = 'https://walteryiphk.github.io/Caltex-Discount-Calculator/json/cc-oilprice.json';
 const statusEl = document.getElementById('status');
 const VENDOR_KEYWORDS = ['加德士', 'caltex', 'Caltex'];
 
