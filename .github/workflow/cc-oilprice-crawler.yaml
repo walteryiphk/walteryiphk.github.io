@@ -1,0 +1,49 @@
+name: Fetch HK Petrol Price from Open Data
+
+on:
+  schedule:
+    - cron: '18 */3 * * *'
+  workflow_dispatch:
+     
+jobs:
+  fetch-and-save:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+      
+    - name: Switch to github-page branch
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "github-actions[bot]"
+        
+        git fetch origin
+        
+        if git checkout github-page 2>/dev/null; then
+          echo "Switch to branch github-page"
+          git pull origin github-page
+        else
+          echo "Create new branch github-page"
+          git checkout -b github-page
+        fi
+
+    - name: Download and format JSON
+      run: |
+        mkdir -p json
+        curl -s https://www.consumer.org.hk/pricewatch/oilwatch/opendata/oilprice.json > Caltex-Discount-Calculator/json/cc-oilprice.json
+
+        cat Caltex-Discount-Calculator/json/cc-oilprice.json
+
+
+    - name: Commit and Push if updated
+      run: |
+        git add Caltex-Discount-Calculator/json/cc-oilprice.json
+        if git diff --cached --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🤖 Update Caltex-Discount-Calculator/json/cc-oilprice.json"
+          git push origin github-page
+        fi
