@@ -1,0 +1,17 @@
+{
+  "name": "油價折扣計算器",
+  "short_name": "油價計算",
+  "description": "計算能源卡折扣後嘅實際油價、實際折扣同每公里油費",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f1e3d",
+  "theme_color": "#203864",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

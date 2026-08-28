@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#203864">
+<title>油價折扣計算器</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg">
+<link rel="apple-touch-icon" href="./icon.svg">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header>⛽ 油價折扣計算器</header>
+<div class="container">
+
+  <div class="card">
+    <button id="fetchBtn">🔄 自動讀取政府油價牌價 (data.gov.hk)</button>
+    <div id="status" class="status"></div>
+    <div class="small-note">
+      資料來源：消費者委員會「油價資訊通」開放數據（車用燃油牌價）。
+      此政府數據集只提供各油公司「無鉛汽油／柴油」單一牌價，並無區分「平油／貴油」，
+      故按此讀取後兩欄會填入同一牌價，「貴油」欄可自行調整。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="row header-row">
+      <div></div>
+      <div class="col-fuel1">平油</div>
+      <div class="col-fuel2">貴油</div>
+    </div>
+
+    <div class="row">
+      <label class="field">今天牌價 ($/L)</label>
+      <input type="number" id="p1" step="0.01" value="32.67">
+      <input type="number" id="p2" step="0.01" value="34.47">
+    </div>
+    <div class="row">
+      <label class="field">能源卡折扣 ($/L)</label>
+      <input type="number" id="d1" step="0.01" value="-11">
+      <input type="number" id="d2" step="0.01" value="-12">
+    </div>
+    <div class="row">
+      <label class="field">每次入 ($)</label>
+      <input type="number" id="v1" step="1" value="300">
+      <input type="number" id="v2" step="1" value="300">
+    </div>
+    <div class="row">
+      <label class="field">送 ($)</label>
+      <input type="number" id="b1" step="1" value="50">
+      <input type="number" id="b2" step="1" value="50">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>計算結果</h2>
+    <div class="row header-row">
+      <div></div>
+      <div class="col-fuel1">平油</div>
+      <div class="col-fuel2">貴油</div>
+    </div>
+    <div class="result-row">
+      <div class="label">實際須付 ($)</div>
+      <div class="val fuel1" id="paid1">-</div>
+      <div class="val fuel2" id="paid2">-</div>
+    </div>
+    <div class="result-row">
+      <div class="label">折後真油價 ($/L)</div>
+      <div class="val fuel1" id="eff1">-</div>
+      <div class="val fuel2" id="eff2">-</div>
+    </div>
+    <div class="result-row">
+      <div class="label">實際折扣 ($/L)</div>
+      <div class="val fuel1 discount" id="disc1">-</div>
+      <div class="val fuel2 discount" id="disc2">-</div>
+    </div>
+    <div class="result-row">
+      <div class="label">入(ℓ)</div>
+      <div class="val fuel1" id="litersV1">-</div>
+      <div class="val fuel2" id="litersV2">-</div>
+    </div>
+    <div class="result-row">
+      <div class="label">送埋總得(ℓ)</div>
+      <div class="val fuel1" id="litersT1">-</div>
+      <div class="val fuel2" id="litersT2">-</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>錶版顯示：每公里油費 ($/km)</h2>
+    <table id="kmTable">
+      <thead>
+        <tr><th>km/L</th><th>平油 $/km</th><th>貴油 $/km</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="footer-links small-note">油價折扣計算器 PWA · 可加至主畫面離線使用</div>
+</div>
+
+<script src="./app.js"></script>
+</body>
+</html>

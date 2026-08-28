@@ -1,0 +1,72 @@
+
+:root {
+  --green: #c6e0b4;
+  --orange: #f8cbad;
+  --header: #203864;
+  --input-bg: #fff2cc;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang HK", "Microsoft JhengHei", Arial, sans-serif;
+  margin: 0;
+  background: #eef1f6;
+  color: #1a1a1a;
+  padding-bottom: 40px;
+}
+header {
+  background: var(--header);
+  color: #fff;
+  padding: 16px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.container { max-width: 720px; margin: 0 auto; padding: 12px; }
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+.card h2 { margin: 0 0 10px; font-size: 1.05rem; }
+.row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; align-items: center; }
+.row.header-row div { font-weight: bold; text-align: center; }
+.row.header-row .col-fuel1 { background: var(--green); border-radius: 8px; padding: 6px 0; }
+.row.header-row .col-fuel2 { background: var(--orange); border-radius: 8px; padding: 6px 0; }
+label.field { font-size: 0.9rem; color: #444; }
+input[type=number] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: var(--input-bg);
+  text-align: right;
+}
+.result-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; padding: 6px 0; border-top: 1px solid #eee; align-items: center; }
+.result-row .label { font-size: 0.9rem; color: #333; }
+.result-row .val { text-align: center; font-weight: bold; font-size: 1rem; }
+.val.fuel1 { background: var(--green); border-radius: 6px; padding: 4px 0; }
+.val.fuel2 { background: var(--orange); border-radius: 6px; padding: 4px 0; }
+.discount { color: #c00; }
+table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+th, td { text-align: center; padding: 6px 4px; border-bottom: 1px solid #eee; font-size: 0.92rem; }
+th { background: #f4f6fb; }
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--header);
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  width: 100%;
+}
+button:active { opacity: 0.85; }
+.status { font-size: 0.85rem; color: #666; margin-top: 6px; min-height: 18px; }
+.status.error { color: #c00; }
+.status.ok { color: #1a7a1a; }
+.small-note { font-size: 0.78rem; color: #888; line-height: 1.4; }
+.footer-links { text-align: center; margin-top: 10px; }
+.footer-links a { color: #203864; text-decoration: none; font-size: 0.85rem; }
