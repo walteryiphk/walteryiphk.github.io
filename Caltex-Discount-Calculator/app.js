@@ -122,5 +122,7 @@ document.getElementById('fetchBtn').addEventListener('click', fetchGovPrice);
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch(() => {});
+    // init price
+    fetchGovPrice();
   });
 }
