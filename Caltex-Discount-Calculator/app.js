@@ -76,7 +76,7 @@ async function fetchGovPrice() {
   statusEl.className = 'status';
   statusEl.textContent = '讀取中...';
   try {
-    const resp = await fetch(GOV_API, { cache: 'no-store' });
+    const resp = await fetch(GOV_API, { cache: 'no-store', mode: 'no-cors' });
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const data = await resp.json();
 
