@@ -67,8 +67,8 @@ function recalc() {
 ids.forEach(id => els[id].addEventListener('input', recalc));
 recalc();
 
-// ---- Auto-fetch government pump price (Consumer Council open data) ----
-const GOV_API = 'https://www.consumer.org.hk/pricewatch/oilwatch/opendata/oilprice.json';
+// ---- Auto-fetch government pump price (Consumer Council open data) & from https://hkg-deadline.github.io Kudos! ----
+const GOV_API = 'https://hkg-deadline.github.io/hk-petrol-price-crawler/json/petrolprice.json';
 const statusEl = document.getElementById('status');
 const VENDOR_KEYWORDS = ['加德士', 'caltex', 'Caltex'];
 
@@ -76,7 +76,7 @@ async function fetchGovPrice() {
   statusEl.className = 'status';
   statusEl.textContent = '讀取中...';
   try {
-    const resp = await fetch(GOV_API, { cache: 'no-store', mode: 'no-cors' });
+    const resp = await fetch(GOV_API, { cache: 'no-store' });
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const data = await resp.json();
 
