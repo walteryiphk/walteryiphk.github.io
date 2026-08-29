@@ -2,7 +2,7 @@ name: Fetch HK Petrol Price from https://www.consumer.org.hk
 
 on:
   schedule:
-    - cron: '18 */3 * * *'
+    - cron: '39 */2 * * *'
   workflow_dispatch:
      
 jobs:
