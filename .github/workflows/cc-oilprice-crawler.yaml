@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       
     - name: Switch to github-page branch
       run: |
@@ -32,7 +32,7 @@ jobs:
 
     - name: Download and format JSON
       run: |
-        mkdir -p json
+        mkdir -p Caltex-Discount-Calculator/json
         curl -s https://www.consumer.org.hk/pricewatch/oilwatch/opendata/oilprice.json > Caltex-Discount-Calculator/json/cc-oilprice.json
 
         cat Caltex-Discount-Calculator/json/cc-oilprice.json
